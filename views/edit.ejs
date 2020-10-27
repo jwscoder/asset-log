@@ -1,0 +1,46 @@
+<%- include("header") -%>
+
+<div class="container">
+  <div class="jumbotron text-center">
+    <h2>Update</h2>
+    <form class="pt-4" action="/edit/<%=foundAsset._id%>" method="post">
+      <div class="row">
+        <div class="col-lg">
+          <input class="form-control" type="number" name="number" min="1000" max="9999" value="<%=foundAsset.number%>">
+
+        </div>
+        <div class="col-lg">
+          <select class="custom-select" name="type" required>
+            <option selected disabled value=""><%=foundAsset.type%></option>
+            <option value="Thin CLient">Thin Client</option>
+            <option value="PC">PC</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Printer">Printer</option>
+            <option value="IMAC">IMAC</option>
+          </select>
+        </div>
+        <div class="col-lg">
+          <input class="form-control" type="text" name="model" value="<%=foundAsset.model%>">
+        </div>
+        <div class="col-lg">
+          <select class="custom-select" name="location" required>
+            <option selected disabled value=""><%=foundAsset.location%></option>
+            <option value="Site-1">Site-1</option>
+            <option value="Site-2">Site-2</option>
+            <option value="Site-3">Site-3</option>
+          </select>
+        </div>
+        <div class="col-lg">
+          <button class="btn btn-block btn-outline-primary" type="submit" name="button"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <a class="btn btn-lg btn-outline-primary" href="/">Home</a>
+</div>
+
+
+
+
+<%- include("footer") -%>

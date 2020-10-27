@@ -1,0 +1,95 @@
+<%- include("header") -%>
+
+  <div class="jumbotron">
+    <h1 class="text-center">All <span class="text-primary"><%=filterTitle%>'s</span></h1>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <a class="btn btn-lg btn-outline-primary" href="/">Home</a>
+    <br>
+    <br>
+  </div>
+
+<!-- loading spinner -->
+  <div class="d-flex justify-content-center">
+    <div id="loader" class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    </div>
+  </div>
+
+    <div class="container-fluid">
+      <a class="btn btn-sm btn-outline-success" download="<%=filterTitle%>s.csv" href="#" onclick="return ExcellentExport.csv(this, 'assetRegister');">CSV <i class="fas fa-file-download"></i></a>
+      <a class="btn btn-sm btn-outline-success" download="<%=filterTitle%>s.xls" href="#" onclick="return ExcellentExport.excel(this, 'assetRegister', '<%=filterTitle%>s');">Excel <i class="fas fa-file-download"></i></a>
+      <span class="float-right">Total <span class="badge badge-primary"><%= assetsFilter.length %></span></span>
+    </div>
+
+    <div class="container-fluid">
+      <div class="table-responsive">
+          <table class="table table-striped table-dark table-bordered sortable">
+          <thead>
+            <tr>
+              <th class="table-header" scope="col"><i class="fas fa-sort"></i> Number</th>
+              <th class="table-header" scope="col"><i class="fas fa-sort"></i> Type</th>
+              <th class="table-header" scope="col"><i class="fas fa-sort"></i> Model</th>
+              <th class="table-header" scope="col"><i class="fas fa-sort"></i> Location</th>
+              <th class="text-center" colspan="2">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% assetsFilter.forEach(function(asset){ %>
+              <tr>
+                <th scope="filterData row"><%=asset.number%></th>
+                <td class="filterData type"><%=asset.type%></td>
+                <td class="filterData model"><%=asset.model%></td>
+                <td class="filterData location"><%=asset.location%></td>
+                <td>
+                <form action="/edit/<%=asset._id%>">
+                  <button class="btn btn-sm btn-block btn-outline-primary" type="submit"><i class="fas fa-edit"></i></button>
+                </form>
+                </td>
+                <td>
+                <form action="/delete" method="post">
+                  <button class="btn btn-sm btn-block btn-outline-danger" type="submit" name="deleteBtn" value="<%=asset._id%>"><i class="fas fa-trash-alt"></i></button>
+                </form>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<br>
+
+<!-- HIDDEN TABLE FOR EXPORT -->
+<table id="assetRegister" class="table table-striped table-dark" style="display: none">
+<thead>
+  <tr>
+    <th scope="col">Number</th>
+    <th scope="col">Type</th>
+    <th scope="col">Model</th>
+    <th scope="col">Location</th>
+    <th scope="col">HDD</th>
+    <th scope="col">Owner</th>
+  </tr>
+</thead>
+<tbody>
+  <% assetsFilter.forEach(function(asset){ %>
+    <tr>
+      <th scope="filterData row"><%=asset.number%></th>
+      <td class="filterData type"><%=asset.type%></td>
+      <td class="filterData model"><%=asset.model%></td>
+      <td class="filterData location"><%=asset.location%></td>
+      <% if(asset.type == "PC" || asset.type == "IMAC"){ %>
+        <td class="filterData hdd">Yes</td>
+      <% } else { %>
+        <td class="filterData hdd">No</td>
+      <% } %>
+      <td class="filterData owner">IT Manager</td>
+    </tr>
+  <% }); %>
+</tbody>
+</table>
+
+<%- include("footer-filter") -%>

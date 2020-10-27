@@ -1,0 +1,15 @@
+<%- include("header") -%>
+
+<div class="jumbotron">
+  <h1>Uh oh - Asset number: <span class="text-danger"><%=foundAsset.number%></span> already exists</h1>
+  <br>
+  <a class="btn btn-lg btn-outline-primary" href="/">Home</a>
+</div>
+
+<!-- loading spinner -->
+  <div class="d-flex justify-content-center">
+    <div id="loader" class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    </div>
+  </div>
+
+<%- include("footer-filter") -%>

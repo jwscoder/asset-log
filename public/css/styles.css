@@ -1,0 +1,13 @@
+body {
+  font-family: "Lato", sans-serif !important;
+  visibility: hidden;
+}
+
+.table-header:hover {
+  color: grey !important;
+  cursor: pointer;
+}
+
+#loader {
+  visibility: visible;
+}
