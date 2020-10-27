@@ -24,7 +24,7 @@ Now run node app.js in the root directory of this project, open a web browser an
 <br>
 You should now see the app running in the browser
 </p>
-<p>Commit any changes to this develop branch</p>
+<p>Commit any changes to this master branch</p>
 
 <h4>What is needed?</h4>
 <p>Pagination on the index.ejs page to prevent performance issues</p>
